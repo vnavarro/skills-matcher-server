@@ -1,33 +1,56 @@
 {
-  "name": "skills-matcher-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "br-taqtile-node_base_project-server-api",
+  "version": "0.1.0",
+  "description": "Base project for Node.js servers and APIs",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "grunt",
+    "test": "grunt test",
+    "travis": "grunt travis"
+  },
+  "engines": {
+    "npm": "2.11.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vnavarro/skills-matcher-server.git"
+    "url": "https://github.com/indigotech/br-taqtile-node_base_project-server-api"
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vnavarro/skills-matcher-server/issues"
-  },
-  "homepage": "https://github.com/vnavarro/skills-matcher-server",
+  "author": "Taqtile",
+  "license": "For internal use only",
+  "homepage": "https://github.com/indigotech/br-taqtile-node_base_project-server-api",
   "dependencies": {
-    "coffee-script": "^1.10.0",
-    "coffeelint": "^1.14.2",
-    "express": "^4.13.3",
-    "glob": "^6.0.4",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13",
+    "body-parser": "1.14.1",
+    "coffee-script": "1.10.0",
+    "colors": "1.1.2",
+    "express": "4.13.3",
+    "jsonschema": "1.0.2",
+    "node-data-handling": "0.1.0",
+    "rootpath": "0.1.2",
+    "tq1-helpers": "git+https://github.com/tq1/br-tq1-helpers.git#0.0.1",
+    "tq1-logger": "git+https://github.com/tq1/tq1-logger.git#1.0.0",
+    "walk": "2.3.9"
+  },
+  "devDependencies": {
+    "chai": "3.4.0",
+    "coffeelint": "1.13.0",
+    "glob": "5.0.15",
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
     "grunt-coffeelint": "0.0.13",
-    "grunt-contrib-coffee": "^0.13.0",
-    "grunt-contrib-copy": "~0.8.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-env": "^0.4.4",
-    "node.extend": "^1.1.3"
+    "grunt-concurrent": "2.0.3",
+    "grunt-contrib-clean": "0.6.0",
+    "grunt-contrib-coffee": "0.13.0",
+    "grunt-contrib-copy": "0.8.2",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-env": "0.4.4",
+    "grunt-mocha-test": "0.12.7",
+    "grunt-node-inspector": "0.4.1",
+    "grunt-nodemon": "0.4.0",
+    "lodash": "3.10.1",
+    "matchdep": "1.0.0",
+    "mocha": "2.3.3",
+    "proxyquire": "1.7.3",
+    "sinon": "1.17.2",
+    "sinon-chai": "2.8.0"
   }
 }

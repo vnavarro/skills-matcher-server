@@ -1,0 +1,14 @@
+mongodb:
+  image: mongo:3.0.4
+  ports:
+    - "27017:27017"
+    - "28017:28017"
+  command: mongod --storageEngine wiredTiger --rest
+  environment:
+    - MONGO_URL=mongodb://mongodb:27017
+memcache:
+  image: tutum/memcached
+  ports:
+    - "11211:11211"
+  environment:
+    - MEMCACHED_PASS=admin
