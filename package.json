@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/vnavarro/skills-matcher-server",
   "dependencies": {
+    "chai": "^3.4.1",
     "coffee-script": "^1.10.0",
     "coffeelint": "^1.14.2",
     "express": "^4.13.3",
@@ -28,6 +29,10 @@
     "grunt-contrib-copy": "~0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-env": "^0.4.4",
-    "node.extend": "^1.1.3"
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.3.4",
+    "node.extend": "^1.1.3",
+    "proxyquire": "^1.7.3",
+    "rootpath": "^0.1.2"
   }
 }
