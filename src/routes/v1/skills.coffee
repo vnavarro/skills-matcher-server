@@ -5,11 +5,18 @@ module.exports = (express, skillModel) ->
 
   return (app) ->
     appRouter.get '/skills', (req, res) ->
-      tags = req.query.tags.split ","
-      skill.where("tag").in(tags).exec (error, response) ->
-        if error
-          res.send 500, { error: "Couldn't update tag." }
-        res.json response
+      tags = req.query.tags
+      if tags
+        tags = tags.split ","
+        skill.where("tag").in(tags).exec (error, response) ->
+          if error
+            res.send 500, { error: "Couldn't find skills." }
+          res.json response
+      else
+        skill.find "", (error, response) ->
+          if error
+            res.send 500, { error: "Couldn't find skills." }
+          res.json response
 
     appRouter.get '/skill/:tag', (req, res) ->
       skill.findOne
@@ -24,9 +31,10 @@ module.exports = (express, skillModel) ->
         tag: req.body.tag
         ,
         related: req.body.related
-        , (err, response) ->
+        , (error, response) ->
           if error
-            res.send 500, { error: "Couldn't create skill." }
+            res.json response
+            #res.send 500, { error: "Couldn't create skill." }
           res.json response
 
     appRouter.put '/skill/:tag', (req, res) ->
@@ -40,7 +48,7 @@ module.exports = (express, skillModel) ->
             $each: related
       ,
         upsert: true
-      , (err, doc) ->
+      , (error, doc) ->
         if error
           res.send 500, { error: "Couldn't update skill." }
         res.json doc
