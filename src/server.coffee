@@ -33,13 +33,14 @@ common.middlewares.mobileRequestValidator = require('src/modules/common/middlewa
 db = {}
 db.schemas = {}
 db.schemas.user = require('src/db/schemas/user')
+db.schemas.skill = require('src/db/schemas/skill')
 db.db = require('src/db/db') app.dataHandling, db.schemas
 
 # Routes
 routes_version =
   v1:
     users: require('src/routes/v1/users') app.express
-    skills: require('src/routes/v1/skills') app.express
+    skills: require('src/routes/v1/skills') app.express, db.db.Skill
 routes = require('src/routes/routes') app.express, core.config, routes_version
 
 

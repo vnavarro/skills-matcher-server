@@ -6,7 +6,7 @@ devEnvironment =
 
   PORT: 3000
 
-  MONGODB_URL: '192.168.59.103:27017/db'
+  MONGODB_URL: 'mongodb://fitapi:fitapi@ds047355.mongolab.com:47355/fitme'
 
   MEMCACHE_SERVERS: '192.168.59.103:11211/db'
   MEMCACHE_USERNAME: 'admin'
@@ -19,7 +19,7 @@ devEnvironment =
 testEnvironment = grunt.util._.extend grunt.util._.clone(devEnvironment),
   NODE_ENV: 'test'
 
-  MONGODB_URL: '192.168.59.103:27017/test'
+  MONGODB_URL: 'mongodb://fitapi:fitapi@ds047355.mongolab.com:47355/fitme'
 
   MEMCACHE_SERVERS: '192.168.59.103:11211/test'
   MEMCACHE_USERNAME: 'admin'
