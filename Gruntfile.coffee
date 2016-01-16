@@ -34,10 +34,21 @@ module.exports = (grunt) ->
         files: ['src/**/*.json']
         tasks: ['copy']
 
+    # grunt mocha tests
+    mochaTest:
+      test:
+        src: ['tests/{,**/}*tests.coffee']
+        options:
+          reporter: 'spec'
+          compiler: 'coffee:coffee-script/register'
+          timeout: 10000
+
     # load plugins
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-contrib-copy'
     grunt.loadNpmTasks 'grunt-contrib-watch'
+    grunt.loadNpmTasks 'grunt-mocha-test'
 
     # tasks
-    grunt.registerTask 'default', ['copy', 'coffee', 'watch']
+    grunt.registerTask 'default', ['copy', 'coffee', 'mochaTest' , 'watch']
+    grunt.registerTask 'test', ['mochaTest']
