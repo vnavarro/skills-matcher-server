@@ -36,11 +36,16 @@ db.schemas.user = require('src/db/schemas/user')
 db.schemas.skill = require('src/db/schemas/skill')
 db.db = require('src/db/db') app.dataHandling, db.schemas
 
+elasticsearch = require 'elasticsearch'
+_ = require 'underscore'
+request = require 'request'
+
 # Routes
 routes_version =
   v1:
-    users: require('src/routes/v1/users') app.express
+    users: require('src/routes/v1/users') app.express, core.config, request, _
     skills: require('src/routes/v1/skills') app.express, db.db.Skill
+    search: require('src/routes/v1/search') app.express, core.config, request, _
 routes = require('src/routes/routes') app.express, core.config, routes_version
 
 

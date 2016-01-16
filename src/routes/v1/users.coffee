@@ -1,25 +1,67 @@
-module.exports = (express) ->
+module.exports = (express, config, request, _) ->
 
   appRouter = express.Router()
 
   return (app) ->
     appRouter.get '/users', (req, res) ->
-      res.json [ {name: 'Jessica'}, {name: 'Dero'}]
+      options =
+        url: 'http://localhost:9200/fitme/user/_search'
+        method: 'GET'
+
+      request options, (err, resp) ->
+        if not err?
+          res.json _.pluck JSON.parse(resp.body).hits.hits, '_source'
+        else
+          res.sendStatus 400
 
     appRouter.get '/user/:id', (req, res) ->
-      res.json
-        name: 'Jessica'
+      id = req.params.id
+      options =
+        url: "http://localhost:9200/fitme/user/#{id}"
+        method: 'GET'
+
+      request options, (err, resp) ->
+        if not err?
+          res.json JSON.parse(resp.body)._source
+        else
+          res.sendStatus 400
 
     appRouter.post '/user', (req, res) ->
-      res.json
-        name: req.body.name
-        role: req.body.role
-        area: req.body.area
-        skills: req.skills
+      options =
+        url: "http://localhost:9200/fitme/user/"
+        method: 'POST'
+        json: true
+        body:
+          name: req.body.name
+          role: req.body.role
+          area: req.body.area
+          photo: req.body.photo
+          skills: req.body.skills
+
+      request options, (err, resp) ->
+        if not err?
+          res.json resp.body
+        else
+          res.sendStatus 400
 
     appRouter.put '/user/:id', (req, res) ->
-      res.json
-        name: req.params.name
+      id = req.params.id
+      options =
+        url: "http://localhost:9200/fitme/user/#{id}"
+        method: 'PUT'
+        json: true
+        body:
+          name: req.body.name
+          role: req.body.role
+          area: req.body.area
+          photo: req.body.photo
+          skills: req.skills
+
+      request options, (err, resp) ->
+        if not err?
+          res.json resp.body
+        else
+          res.sendStatus 400
 
     appRouter.delete '/user/:id', (req, res) ->
       res.send({ msg: "Success" })
