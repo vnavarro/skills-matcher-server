@@ -14,7 +14,7 @@ core = {}
 core.config = require('src/core/config/config') app.configHelper, app.packageJson
 
 # Logs
-require('tq1-logger')(core.config.loggerOptions, console)
+# require('tq1-logger')(core.config.loggerOptions, console)
 
 # Common Module
 common = {}
