@@ -1,54 +1,25 @@
 module.exports = (grunt) ->
 
-  # configuration
-  grunt.initConfig
+  # load all grunt tasks
+  require("matchdep").filterDev("grunt-*").forEach grunt.loadNpmTasks
 
-    # grunt coffee
-    coffee:
-      glob_to_multiple:
-        expand: true
-        flatten: false
-        cwd: 'src'
-        src: ['**/*.coffee']
-        dest: 'dist'
-        ext: '.js'
-        options:
-          bare: true
-          preserve_dirs: true
+  config =
+    cwd: process.cwd()
 
-    copy:
-      main:
-        files:[
-          expand: true
-          cwd: 'src'
-          src: ['**/*.json']
-          dest: 'dist'
-        ]
+  loadConfig = (path) ->
+    glob = require("glob")
+    object = {}
+    key = undefined
+    glob.sync("*",
+      cwd: path
+    ).forEach (option) ->
+      key = option.replace(/\.(js|coffee)$/, "")
+      object[key] = require(path + option)
 
-    # grunt watch
-    watch:
-      coffee:
-        files: ['src/**/*.coffee']
-        tasks: ['coffee']
-      json:
-        files: ['src/**/*.json']
-        tasks: ['copy']
+    return object
 
-    # grunt mocha tests
-    mochaTest:
-      test:
-        src: ['tests/{,**/}*tests.coffee']
-        options:
-          reporter: 'spec'
-          compiler: 'coffee:coffee-script/register'
-          timeout: 10000
+  grunt.util._.extend config, loadConfig("#{config.cwd}/tasks/options/")
 
-    # load plugins
-    grunt.loadNpmTasks 'grunt-contrib-coffee'
-    grunt.loadNpmTasks 'grunt-contrib-copy'
-    grunt.loadNpmTasks 'grunt-contrib-watch'
-    grunt.loadNpmTasks 'grunt-mocha-test'
+  grunt.initConfig config
 
-    # tasks
-    grunt.registerTask 'default', ['copy', 'coffee', 'mochaTest' , 'watch']
-    grunt.registerTask 'test', ['mochaTest']
+  grunt.loadTasks "#{config.cwd}/tasks"
