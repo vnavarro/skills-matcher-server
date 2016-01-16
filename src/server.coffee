@@ -39,6 +39,7 @@ db.db = require('src/db/db') app.dataHandling, db.schemas
 routes_version =
   v1:
     users: require('src/routes/v1/users') app.express
+    skills: require('src/routes/v1/skills') app.express
 routes = require('src/routes/routes') app.express, core.config, routes_version
 
 
