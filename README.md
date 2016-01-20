@@ -1,4 +1,34 @@
-# Node.js - API Server
+# Fit.me - API Server
+
+This is a project conceptualized during Taqtile's 1st Hackathon (2016).
+
+His goal is to **help POs with team member allocation through skills search**.
+
+In order to do that we:
+
+* Store team members skills, with up votes and relation, and;
+* Allow searching of people by one or more skills;
+
+## TechStack
+
+* [node.js](https://nodejs.org/en/)
+* [CoffeScript](http://coffeescript.org/)
+* [Grunt](http://gruntjs.com/)
+* [Chai](http://chaijs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [ElasticSearch](https://www.elastic.co/)
+
+## Roadmap
+
+### 0.1.0
+
+* Replace ElasticSearch with [Amazon CloudSearch](https://aws.amazon.com/pt/cloudsearch/)
+* Bring API and ElasticSearch online;
+* Build API page and documentation, current options are: [Github pages](https://pages.github.com/), [Gitbook](https://www.gitbook.com/) and [Apiary](https://apiary.io/);
+* Finish unit and integration tests;
+* Refactor v1 code;
+* Refactor code architecture, the use of a template gave us unnecessary gifts, and;
+* Add code coverage, code quality reporter and continuous integration.
 
 ## Development environment setup
 
@@ -20,7 +50,7 @@ This is what do you need to run this project locally:
 
   It'll create and start containers for each item on [docker-compose](docker-compose.yml) file
 
-  Add the flag `-d` to this command to run it in backgroud. To stop the services run
+  Add the flag `-d` to this command to run it in background. To stop the services run
   ```
   $ docker-compose stop
   ```
@@ -41,10 +71,6 @@ This is what do you need to run this project locally:
 $ npm install
 $ npm test
 ```
-
-### caveat
-
-Travis build will execute `$ npm run travis`, so environment variables can be used exclusively for CI, depending on the needs
 
 ### npm shrinkwrap
 
